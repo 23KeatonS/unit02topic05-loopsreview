@@ -1,6 +1,42 @@
 public class Main {
   
-  public static void main(String[] args) {
+  public static String formGradeString(int[] grades){
+    String gradeString = "";
+    for (int grade: grades){
+      if (grade>=90){
+        gradeString += "A";
+      }else if (grade>= 80){
+        gradeString += "B";
+      }else if (grade>= 70){
+        gradeString += "C";
+      }else if (grade>= 60){
+        gradeString += "D";
+      }else{
+        gradeString += "F";
+      }
+    }
+    return gradeString; 
+  }
+
+
+
+  public static String valedictorianName(String [] names, double [] GPAs){
+    int highestIndex = 0;
+    for (int i = 0; i<GPAs.length;i++){
+      if (GPAs[i]>GPAs[highestIndex]){
+        highestIndex = i;
+      }
+    }
     
+    return names[highestIndex];
+  }
+
+
+  public static void main(String[] args) {
+    int [] nums = {62,79,99,50};
+    System.out.println(formGradeString(nums));
+    String [] valedictorians = {"emily", "albert", "sophie", "phillip", "ophelia"};
+    double [] grades = {0.223,3.538,3.237,1.437,1.162};
+    System.out.println(valedictorianName(valedictorians,grades));
   }
 }
