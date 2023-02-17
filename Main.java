@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Main {
   
   public static String formGradeString(int[] grades){
@@ -27,9 +28,42 @@ public class Main {
         highestIndex = i;
       }
     }
-    
     return names[highestIndex];
   }
+
+
+public static int[] longestPlateau(int [] nums){
+  int prevNum = -1;
+  int startIndex;
+  int greatestIndex = 0;
+  int greatestlength = 0;
+  int repeatLength;
+  for (int i = 0; i<nums.length;i++){
+    if (nums[i] == prevNum){
+      int index = (i-1);
+      repeatLength = 0;
+      startIndex = index;
+      while((index<nums.length) && nums[index] == nums[i-1]){
+        repeatLength+= 1;
+        index ++;
+      }
+      if (index>nums.length){
+        index --;
+      }
+      if (repeatLength>greatestlength && nums[startIndex]>nums[startIndex-1] && nums[startIndex]>nums[startIndex+repeatLength]){
+        greatestlength = repeatLength;
+        greatestIndex = startIndex;
+      }
+    }
+  
+  prevNum = nums[i];
+  }
+  int [] returnArray = {greatestlength,greatestIndex};
+  return returnArray;
+  
+}
+
+
 
 
   public static void main(String[] args) {
@@ -38,5 +72,7 @@ public class Main {
     String [] valedictorians = {"emily", "albert", "sophie", "phillip", "ophelia"};
     double [] grades = {0.223,3.538,3.237,1.437,1.162};
     System.out.println(valedictorianName(valedictorians,grades));
+    int [] numList = {0, 1, 1, 1, 1, 0, 3, 3, 2, 2};
+    System.out.println(Arrays.toString(longestPlateau(numList)));
   }
 }
